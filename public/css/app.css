@@ -1,0 +1,96 @@
+/* ========================================
+   MAIN CSS - Sparepart Jawi
+   Mengimport semua file CSS components
+   ======================================== */
+
+/* Import variables first */
+:root {
+    --sogan: #6b4f3c;
+    --sogan-light: #8b6f5c;
+    --sogan-dark: #4a3527;
+    --krem: #f8f5f0;
+    --krem-dark: #e8e0d5;
+    --emas: #c19a6b;
+    --emas-light: #d4b28c;
+    --emas-dark: #a87c4f;
+    --hitam: #2c2420;
+}
+
+/* Import all CSS files */
+@import url("dashboard.css");
+@import url("sidebar.css");
+@import url("header.css");
+@import url("components/buttons.css");
+@import url("components/cards.css");
+@import url("components/forms.css");
+@import url("components/tables.css");
+@import url("pages/dashboard.css");
+@import url("pages/users.css");
+
+/* Base styles */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--krem);
+    color: var(--hitam);
+}
+
+.font-playfair {
+    font-family: "Playfair Display", serif;
+}
+
+/* Utility classes */
+.text-sogan {
+    color: var(--sogan);
+}
+.bg-sogan {
+    background-color: var(--sogan);
+}
+.border-sogan {
+    border-color: var(--sogan);
+}
+
+.text-emas {
+    color: var(--emas);
+}
+.bg-emas {
+    background-color: var(--emas);
+}
+.border-emas {
+    border-color: var(--emas);
+}
+
+.text-krem {
+    color: var(--krem);
+}
+.bg-krem {
+    background-color: var(--krem);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease;
+}
