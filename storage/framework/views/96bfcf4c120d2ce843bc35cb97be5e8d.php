@@ -24,33 +24,33 @@
     <nav class="flex-1 px-3 py-6 overflow-y-auto scrollbar-thin scrollbar-thumb-emas/30 scrollbar-track-transparent">
         <div class="space-y-1">
             <!-- Dashboard -->
-            <a href="{{ route('dashboard') }}"
-                class="menu-item flex items-center space-x-3 px-4 py-3 text-krem/80 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md group {{ request()->routeIs('dashboard') ? 'bg-emas/20 text-emas shadow-md' : 'hover:bg-sogan-light' }}">
+            <a href="<?php echo e(route('dashboard')); ?>"
+                class="menu-item flex items-center space-x-3 px-4 py-3 text-krem/80 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md group <?php echo e(request()->routeIs('dashboard') ? 'bg-emas/20 text-emas shadow-md' : 'hover:bg-sogan-light'); ?>">
                 <i class="fas fa-home w-5 transition-all duration-200 group-hover:scale-110 group-hover:text-emas group-hover:rotate-3"></i>
                 <span class="flex-1 font-medium">Dashboard</span>
-                @if(request()->routeIs('dashboard'))
+                <?php if(request()->routeIs('dashboard')): ?>
                 <i class="fas fa-chevron-right text-xs text-emas animate-pulse"></i>
-                @endif
+                <?php endif; ?>
             </a>
 
-            @auth
-            @if(auth()->user()->isAdmin())
+            <?php if(auth()->guard()->check()): ?>
+            <?php if(auth()->user()->isAdmin()): ?>
             <!-- Manajemen User -->
-            <a href="{{ route('users.index') }}"
-                class="menu-item flex items-center space-x-3 px-4 py-3 text-krem/80 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md group {{ request()->routeIs('users.*') ? 'bg-emas/20 text-emas shadow-md' : 'hover:bg-sogan-light' }}">
+            <a href="<?php echo e(route('users.index')); ?>"
+                class="menu-item flex items-center space-x-3 px-4 py-3 text-krem/80 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md group <?php echo e(request()->routeIs('users.*') ? 'bg-emas/20 text-emas shadow-md' : 'hover:bg-sogan-light'); ?>">
                 <i class="fas fa-users-cog w-5 transition-all duration-200 group-hover:scale-110 group-hover:text-emas group-hover:rotate-3"></i>
                 <span class="flex-1 font-medium">Manajemen User</span>
-                @if(request()->routeIs('users.*'))
+                <?php if(request()->routeIs('users.*')): ?>
                 <i class="fas fa-chevron-right text-xs text-emas animate-pulse"></i>
-                @endif
+                <?php endif; ?>
             </a>
-            @endif
-            @endauth
+            <?php endif; ?>
+            <?php endif; ?>
 
             <!-- Sparepart with submenu -->
-            <div x-data="{ open: {{ request()->routeIs('spareparts.*') || request()->routeIs('categories.*') ? 'true' : 'false' }} }" class="relative">
+            <div x-data="{ open: <?php echo e(request()->routeIs('spareparts.*') || request()->routeIs('categories.*') ? 'true' : 'false'); ?> }" class="relative">
                 <button @click="open = !open"
-                    class="menu-item w-full flex items-center space-x-3 px-4 py-3 text-krem/80 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md group {{ request()->routeIs('spareparts.*') || request()->routeIs('categories.*') ? 'bg-emas/20 text-emas shadow-md' : 'hover:bg-sogan-light' }}">
+                    class="menu-item w-full flex items-center space-x-3 px-4 py-3 text-krem/80 rounded-lg transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md group <?php echo e(request()->routeIs('spareparts.*') || request()->routeIs('categories.*') ? 'bg-emas/20 text-emas shadow-md' : 'hover:bg-sogan-light'); ?>">
                     <i class="fas fa-box w-5 transition-all duration-200 group-hover:scale-110 group-hover:text-emas group-hover:rotate-3"></i>
                     <span class="flex-1 text-left font-medium">Sparepart</span>
                     <i class="fas fa-chevron-down text-xs transition-all duration-300 group-hover:scale-110" :class="{ 'rotate-180': open }"></i>
@@ -64,18 +64,18 @@
                     x-transition:leave-start="transform opacity-100 translate-y-0"
                     x-transition:leave-end="transform opacity-0 -translate-y-2"
                     class="pl-11 pr-3 py-2 space-y-2">
-                    <a href="{{ route('spareparts.index') }}"
-                        class="submenu-item block text-sm text-krem/70 hover:text-emas py-2 px-3 rounded-lg transition-all duration-200 hover:translate-x-1 hover:bg-sogan-light/50 active:translate-x-0 {{ request()->routeIs('spareparts.index') ? 'text-emas bg-sogan-light/30' : '' }}">
+                    <a href="<?php echo e(route('spareparts.index')); ?>"
+                        class="submenu-item block text-sm text-krem/70 hover:text-emas py-2 px-3 rounded-lg transition-all duration-200 hover:translate-x-1 hover:bg-sogan-light/50 active:translate-x-0 <?php echo e(request()->routeIs('spareparts.index') ? 'text-emas bg-sogan-light/30' : ''); ?>">
                         <i class="fas fa-list mr-2 text-xs"></i>
                         Daftar Sparepart
                     </a>
-                    <a href="{{ route('spareparts.create') }}"
-                        class="submenu-item block text-sm text-krem/70 hover:text-emas py-2 px-3 rounded-lg transition-all duration-200 hover:translate-x-1 hover:bg-sogan-light/50 active:translate-x-0 {{ request()->routeIs('spareparts.create') ? 'text-emas bg-sogan-light/30' : '' }}">
+                    <a href="<?php echo e(route('spareparts.create')); ?>"
+                        class="submenu-item block text-sm text-krem/70 hover:text-emas py-2 px-3 rounded-lg transition-all duration-200 hover:translate-x-1 hover:bg-sogan-light/50 active:translate-x-0 <?php echo e(request()->routeIs('spareparts.create') ? 'text-emas bg-sogan-light/30' : ''); ?>">
                         <i class="fas fa-plus-circle mr-2 text-xs"></i>
                         Tambah Sparepart
                     </a>
-                    <a href="{{ route('categories.index') }}"
-                        class="submenu-item block text-sm text-krem/70 hover:text-emas py-2 px-3 rounded-lg transition-all duration-200 hover:translate-x-1 hover:bg-sogan-light/50 active:translate-x-0 {{ request()->routeIs('categories.*') ? 'text-emas bg-sogan-light/30' : '' }}">
+                    <a href="<?php echo e(route('categories.index')); ?>"
+                        class="submenu-item block text-sm text-krem/70 hover:text-emas py-2 px-3 rounded-lg transition-all duration-200 hover:translate-x-1 hover:bg-sogan-light/50 active:translate-x-0 <?php echo e(request()->routeIs('categories.*') ? 'text-emas bg-sogan-light/30' : ''); ?>">
                         <i class="fas fa-tags mr-2 text-xs"></i>
                         Kategori
                     </a>
@@ -117,32 +117,33 @@
     </nav>
 
     <!-- User Profile untuk Desktop -->
-    @auth
+    <?php if(auth()->guard()->check()): ?>
     <div class="hidden lg:block p-4 border-t border-emas/20 bg-gradient-to-t from-sogan-dark/20 to-transparent">
         <div class="flex items-center space-x-3">
             <div class="w-10 h-10 bg-emas rounded-full flex items-center justify-center ring-2 ring-emas/30 transition-all duration-300 hover:scale-110 hover:ring-4 cursor-pointer">
-                <span class="text-sogan font-bold">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>
+                <span class="text-sogan font-bold"><?php echo e(strtoupper(substr(auth()->user()->name, 0, 1))); ?></span>
             </div>
             <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium truncate transition-all duration-200 hover:text-emas">{{ auth()->user()->name }}</p>
+                <p class="text-sm font-medium truncate transition-all duration-200 hover:text-emas"><?php echo e(auth()->user()->name); ?></p>
                 <p class="text-xs text-krem/60 flex items-center">
                     <span class="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></span>
-                    {{ auth()->user()->role_name }}
+                    <?php echo e(auth()->user()->role_name); ?>
+
                 </p>
             </div>
-            <form method="POST" action="{{ route('logout') }}" class="inline">
-                @csrf
+            <form method="POST" action="<?php echo e(route('logout')); ?>" class="inline">
+                <?php echo csrf_field(); ?>
                 <button type="submit" class="text-krem/60 hover:text-emas p-2 rounded-lg hover:bg-sogan-light transition-all duration-200 hover:scale-110 active:scale-95 group" title="Logout">
                     <i class="fas fa-sign-out-alt group-hover:rotate-12 transition-transform"></i>
                 </button>
             </form>
         </div>
     </div>
-    @endauth
+    <?php endif; ?>
 
     <!-- Sidebar Footer -->
     <div class="p-3 text-center text-xs text-krem/40 border-t border-emas/20">
-        <p>© {{ date('Y') }} Viar Genuine Part</p>
+        <p>© <?php echo e(date('Y')); ?> Viar Genuine Part</p>
         <p class="mt-1 flex items-center justify-center gap-1">
             <i class="fas fa-code-branch text-emas/30 text-[10px]"></i>
             v1.0.0
@@ -234,4 +235,4 @@
             });
         });
     });
-</script>
+</script><?php /**PATH C:\Users\MSI\OneDrive\Documents\GitHub\SparttaPOS\resources\views/partials/sidebar.blade.php ENDPATH**/ ?>

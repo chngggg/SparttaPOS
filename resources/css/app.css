@@ -1,25 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-    --sogan: #6b4f3c;
-    --sogan-light: #8b6f5c;
-    --sogan-dark: #4a3527;
-    --krem: #f8f5f0;
-    --krem-dark: #e8e0d5;
-    --emas: #c19a6b;
-    --emas-light: #d4b28c;
-    --emas-dark: #a87c4f;
-    --hitam: #2c2420;
-}
-
-@import url("public/css/dashboard.css");
-@import url("public/css/sidebar.css");
-@import url("public/css/header.css");
-@import url("public/css/components/buttons.css");
-@import url("public/css/components/cards.css");
-@import url("public/css/components/forms.css");
-@import url("public/css/components/tables.css");
-@import url("public/css/pages/dashboard.css");
-@import url("public/css/pages/users.css");
